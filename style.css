@@ -8,9 +8,25 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 93.75%; /* 15px */
+}
+
 body {
     background: #f0f2f5;
     font-family: 'Poppins', sans-serif;
+}
+
+.sr-only { /* esconder o elemento sem afetar os leitores de telas */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0,);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -24,6 +40,21 @@ h2 {
     margin-bottom: 0.8rem;
     color: var(--dark-blue);
     font-weight: normal;
+}
+
+/* Links & Buttons */
+a {
+    color: #49aa26;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3dd705;
+}
+
+.button.new { /* Pegar somente os elementos que tiveram as duas classes */
+    display: inline-block;
+    margin-bottom: .8rem;
 }
 
 /* Header */
@@ -60,6 +91,10 @@ header {
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card p {
@@ -74,6 +109,12 @@ header {
 }
 
 /* Table */
+#transaction {
+    display: block;
+    width: 100%;
+
+    overflow-x: auto; /* Criar rolagem na tabela quando transbordar na tela */
+}
 #data-table {
     color: #969cb3;
     width: 100%;
@@ -91,6 +132,11 @@ table thead th {
 table thead tr th:first-child,
 table tbody tr td:first-child {
     border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+    border-radius: 0 0.25rem 0.25rem 0;
 }
 
 table tbody tr {
@@ -124,4 +170,17 @@ footer {
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
     opacity: 0.6;
+}
+
+/* Responsive */
+@media (min-width: 800px) { /* Aplica esse CSS somente se a tela tiver MAIS DE 800px */
+    html {
+        font-size: 87.5%; /* 14px */
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Repetir três vezes uma fração */
+        gap: 2rem;
+    }
 }
