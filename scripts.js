@@ -1,9 +1,12 @@
 const Modal = {
     open() {
         document.querySelector('.modal-overlay').classList.add('active')
+        document.querySelector('.modal').classList.add('modalAnimation')
     },
     close() {
         document.querySelector('.modal-overlay').classList.remove('active')
+        document.querySelector('.modal').classList.remove('modalAnimation')
+        Form.showError("&nbsp")
     }
 }
 
@@ -161,12 +164,17 @@ const Form = {
         }
         
     },
+    showError(message) {
+        document.querySelector(".message").innerHTML = `${message}`
+        console.log(message)
+    },
     // Validar campos
     validateField() {
         const { description, amount, date } = Form.getValues()
 
         if(description.trim() === "" || amount.trim() === "" || date.trim() === "") { //trim -> limpar os espaços vazios
-            throw new Error("Por favor, preencha todos os campos")// Criar novo objeto de erro utilizando o construtor Error
+            Form.showError("Por favor, preencha todos os campos!")
+            throw new Error("Por favor, preencha todos os campos!")// Criar novo objeto de erro utilizando o construtor Error
         }
 
         console.log(description, amount, date)
@@ -194,7 +202,7 @@ const Form = {
             //Fechar modal
             Modal.close()
         } catch (error) {
-            alert(error.message)
+            console.log(error.message)
         }
     }
 }

@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
+    <script src="./themeSwitch.js"></script>
     <title>dev.finance$</title>
 </head>
 
 <body>
     <header>
-        <img src="./assets/logo.svg" alt="Logo Dev Finance">
+        <img class="animationImg" src="./assets/logo.svg" alt="Logo Dev Finance">
+        <div class="switch">
+            <input type="checkbox" class="checkbox" id="checkbox" onclick="toggleTheme()">
+            <label for="checkbox" class="icon">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+                <div class="ball"></div>
+            </label>
+        </div>
     </header>
 
     <main class="container">
@@ -28,7 +37,7 @@
                 <p id="incomeDisplay">R$ 0,00</p>
             </div>
 
-            <div class="card">
+            <div style="animation-delay: 0.1s;" class="card">
                 <h3>
                     <span>Saídas</span>
                     <img src="./assets/minus.svg" alt="Saídas">
@@ -36,7 +45,7 @@
                 <p id="expenseDisplay">R$ 0,00</p>
             </div>
 
-            <div class="card total">
+            <div style="animation-delay: 0.2s;" class="card total">
                 <h3>
                     <span>Total</span>
                     <img src="./assets/total.svg" alt="Total">
@@ -84,7 +93,7 @@
                         <label class="sr-only" for="date">Data</label>
                         <input id="date" type="date" name="date">
                     </div>
-
+                    <div class="error"><p class="message">&nbsp</p></div>
                     <div class="input-group actions">
                         <a href="#" class="button cancel" onclick="Modal.close()">Cancelar</a>
                         <button>Salvar</button>

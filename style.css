@@ -1,8 +1,43 @@
 :root {
+    --bg: #f0f2f5;
+    --bg-header: #2d4a22;
+    --bg-card: #fff;
+    --bg-th: #fff;
+    --bg-td: #fff;
+    --bg-input: #fff;
+    --text-color-table: #969cb3;
+    --text-color-input: #000;
     --dark-blue: #363f5f;
     --green: #49aa26;
     --light-green: #3dd705;
     --red: #e92929;
+    --color-income: #12a454;
+    --color-expense: #e92929;
+    --color-checkbox-label: #3e8724;
+    --color-help: #000;
+
+    --transition: 0.3s linear;
+}
+
+.dark-mode:root {
+    --bg: #303030;
+    --bg-header: #32721a;
+    --bg-card: #424242;
+    --bg-th: #424242;
+    --bg-td: #525252;
+    --bg-input: #424242;
+    --text-color-table: #dddddd;
+    --text-color-input: #fff;
+    --dark-blue: #dddddd;
+    --green: #388e3c;
+    --light-green: #2bb132;
+    --red: #d32f2f;
+    --color-income: #12a454;
+    --color-expense: #e92929;
+    --color-checkbox-label: #424242;
+    --color-help: #ffffff;
+
+    --transition: 0.3s linear;
 }
 
 * {
@@ -16,8 +51,10 @@ html {
 }
 
 body {
-    background: #f0f2f5;
+    background: var(--bg);
     font-family: 'Poppins', sans-serif;
+
+    transition: var(--transition);
 }
 
 .sr-only { /* esconder o elemento sem afetar os leitores de telas */
@@ -36,6 +73,62 @@ body {
     width: min(90vw, 800px);
     margin: auto;
 }
+
+/* checkbox */
+.switch {
+    width: min(90vw, 800px);
+    margin: auto;
+
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.icon {
+    background: var(--color-checkbox-label);
+    width: 50px;
+    height: 26px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    border-radius: 58px;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+.ball {
+    background: rgb(255, 255, 255);
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .icon .ball { /* classe checkbox que tiver checked, elemento label imediatamente após ele, classe ball */
+    transform: translateX(24px);
+}
+
+.fa-moon {
+	color: rgb(255, 255, 255);
+}
+
+.fa-sun {
+	color: rgb(255, 230, 0);
+}
+
+
+
+
 
 /* Titles */
 h2 {
@@ -99,9 +192,15 @@ button:hover {
 
 /* Header */
 header {
-    background: #2d4a22;
+    background: var(--bg-header);
     padding: 2rem 0 10rem;
     text-align: center;
+
+    transition: background var(--transition);
+}
+
+.animationImg {
+    animation: logoAnimation 1s ease-in-out forwards;
 }
 
 #logo {
@@ -121,11 +220,16 @@ header {
 
 /* Cards */
 .card {
-    background: #fff;
+    background: var(--bg-card);
     color: var(--dark-blue);
     padding: 1.5rem 2rem;
     margin-bottom: 2rem;
     border-radius: 0.25rem;
+
+    opacity: 0;
+
+    animation: cardAnimation 0.8s 0s forwards;
+    transition: background var(--transition);
 }
 
 .card h3 {
@@ -146,6 +250,8 @@ header {
 .card.total { /* procurar elementos que tem as duas classes */
     background: var(--green);
     color: #fff;
+
+    transition: background var(--transition);
 }
 
 /* Table */
@@ -156,17 +262,21 @@ header {
     overflow-x: auto; /* Criar rolagem na tabela quando transbordar na tela */
 }
 #data-table {
-    color: #969cb3;
+    color: var(--text-color-table);
     width: 100%;
     border-spacing: 0 0.5rem;
+
+    transition: color var(--transition);
 }
 
 table thead th {
-    background: #fff;
-    color: #969cb3;
+    background: var(--bg-th);
+    color: var(--text-color-table);
     text-align: left;
     font-weight: normal;
     padding: 1rem 2rem;
+
+    transition: color var(--transition);
 }
 
 table thead tr th:first-child,
@@ -183,25 +293,35 @@ table tbody tr {
     opacity: 0.7;
 }
 
+table tbody td img {
+    cursor: pointer;
+}
+
 table tbody tr:hover {
     opacity: 1;
 }
 
 table tbody td {
-    background: #fff;
+    background: var(--bg-td);
     padding: 1rem 2rem;
 }
 
 td.description {
-    color: var(--dark-blue)
+    color: var(--dark-blue);
+
+    transition: color var(--transition);
 }
 
 td.income {
-    color: #12a454;
+    color: var(--color-income);
+
+    transition: color var(--transition);
 }
 
 td.expense {
-    color: #e92929
+    color: var(--color-expense);
+
+    transition: color var(--transition);
 }
 
 /* Modal */
@@ -229,14 +349,23 @@ td.expense {
 }
 
 .modal {
-    background: #f0f2f5;
+    background: var(--bg);
     width: 90%;
     max-width: 500px; /* Tamanho máximo 500px */
     padding: 2.4rem;
 
     position: relative;
     z-index: 1;
+}
 
+.modal .error {
+    margin: 2px 0 4px 0;
+    font-size: 13px;
+    color: var(--red);
+}
+
+.modalAnimation {
+    animation: modalAnimation 0.5s ease-out forwards;
 }
 
 /* Form */
@@ -249,6 +378,8 @@ td.expense {
 }
 
 #form form input {
+    background: var(--bg-input);
+    color: var(--text-color-input);
     width: 100%;
     padding: .8rem;
 
@@ -260,7 +391,12 @@ td.expense {
     margin-top: .8rem;
 }
 
+.input-group:last-child {
+    margin-top: 0px;
+}
+
 .input-group .help {
+    color: var(--color-help);
     opacity: .4;
 }
 
@@ -293,5 +429,75 @@ footer {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* Repetir três vezes uma fração */
         gap: 2rem;
+    }
+}
+
+
+@keyframes cardAnimation {
+    from {
+        transform: translateY(80px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes logoAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.01);
+    }
+    65% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn{
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.01);
+    }
+    65% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+  }
+
+@keyframes modalAnimation {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
     }
 }
