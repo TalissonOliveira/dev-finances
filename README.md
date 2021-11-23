@@ -15,6 +15,7 @@
 <p align="center">
     <a href="#book-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#cloud-deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#memo-licença">Licença</a>
 </p>
 
@@ -24,6 +25,10 @@
 
 ## :book: Sobre
 O **dev.finances** é uma aplicação para controle financeiro, onde é possível cadastrar e excluir transações e ver o saldo de entrada e saída. O projeto foi desenvolvido durante a [Maratona Discover 1](https://maratonadiscover.rocketseat.com.br/), realizada pela [Rocketseat](https://www.rocketseat.com.br/)
+
+## :cloud: Deploy
+O projeto está hospedado no Github Pages
+> https://talissonoliveira.github.io/dev-finances/
 
 ## :rocket: Tecnologias
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
